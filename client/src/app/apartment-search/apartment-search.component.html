@@ -1,0 +1,16 @@
+<div id="search-component">
+  <h2>Apartments</h2>
+  <h4 class="text-light">Apartment Search</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let apartment of apartments$ | async" >
+      <a routerLink="/detail/{{apartment.id}}">
+        {{apartment.title}}
+      </a>
+    </li>
+  </ul>
+</div>
+<br><br>
+<hr>

@@ -1,0 +1,85 @@
+<div class="container">
+  <h3>Add Review</h3>
+<!-- *ngIf="auth.isLoggedIn" -->
+  <div class="row justify-content-start" *ngIf="auth.isLoggedIn">
+    <div class="col-sm-8">
+      <form role="form" (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text"
+                 class="form-control"
+                 id="title"
+                 [(ngModel)]="review.title"
+                 name="title"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="text">Content</label>
+          <textarea class="form-control"
+                    rows="5"
+                    id="text"
+                    [(ngModel)]="review.text"
+                    name="text">
+            </textarea>
+        </div>
+        <!-- <label >
+        <input type="hiddel" class="form-control" -->
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+
+      <div class="alert alert-warning alert-dismissable text-center" *ngIf="messages.length">
+        <strong>Warning</strong>
+        <button class="btn btn-outline-info"
+                (click)="clear()">clear</button>
+        <ul>
+          <li *ngFor="let message of messages"> {{message}} </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+  <h3>Reviews</h3>
+<hr>
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-8">
+              <div class="panel panel-white post panel-shadow" *ngFor="let review of reviews">
+                  <div class="post-heading">
+                      <!-- <div class="pull-left image">
+                          <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                      </div> -->
+                      <div class="pull-left meta">
+                          <div class="title h5">
+                              <b>{{review.title}}</b> posted by {{ review.userUsername }}
+                          </div>
+                          <h6 class="text-muted time">{{ review.review_date | date : "medium"}}</h6>
+                      </div>
+                  </div>
+                  <div class="post-description">
+                      <p>{{ review.text }}</p>
+                      <div class="stats">
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+<!--
+  <div class="row justify-content-start">
+    <div class="col-4">
+      <ul>
+        <li *ngFor="let review of reviews">
+          {{ review.title }}
+          {{ review.text }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->

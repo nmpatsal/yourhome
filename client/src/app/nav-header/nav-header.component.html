@@ -1,0 +1,35 @@
+<section class="hero">
+  <header>
+    <div class="wrapper">
+      <nav class="navbar navbar-expand-lg fixed-top" role="navigation">
+        <button class="navbar-toggler " type="button" aria-controls="appNavigation"
+         [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation" (click)="toggleMenu()">
+          <span ><img src="static/assets/img/hamburger_icon.png"></span>
+        </button>
+        <a  routerLink="/dashboard"><img src="static/assets/img/logo2.png" class="navbar-brand" class="logo" alt="" title=""/></a>
+        <div class="collapse navbar-collapse navbar-default" id="appNavigation" [ngbCollapse]="isCollapsed">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/dashboard" href="#">Home<span class="sr-only">(current)</span></a></li>
+            <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/apartments" href="#">Apartments</a></li>
+            <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/upload_apartment" href="#">Upload</a></li>
+            <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/about">About</a></li>
+            <!-- <li class="nav-item" routerLinkActive="active"><a class="nav-link" href="#">Contact</a></li> -->
+          </ul>
+          <div *ngIf=!auth.isLoggedIn>
+            <a href="#" routerLink="/login" class="login_btn">{{ auth.isLoggedIn ? 'Logout' : 'Login / Register' }}</a>
+          </div>
+          <div *ngIf=auth.isLoggedIn>
+            <a  (click)="auth.logout()" class="login_btn">Logout</a>
+          </div>
+        </div>
+      </nav>
+  </div>
+</header>
+  <!--  end header section  -->
+
+
+    <section class="caption">
+      <h2 class="caption">Find You Dream Home</h2>
+      <h3 class="properties">Business Apartments - Houses - Mansions</h3>
+    </section>
+</section><!--  end hero section  -->

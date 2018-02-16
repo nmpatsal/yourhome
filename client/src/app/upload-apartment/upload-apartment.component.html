@@ -1,0 +1,86 @@
+<div *ngIf="!auth.isLoggedIn">
+  <div class = "jumbotron">
+    <h1 class="display-3"><a routerLink="/login" href="#">Log in</a></h1>
+    <p class="lead"><a routerLink="/login" href="#">Please Log in to upload your own apartment</a></p>
+  </div>
+</div>
+
+
+<div class="container center_div" *ngIf="auth.isLoggedIn">
+  <br>
+  <h2>Upload a new Apartment</h2>
+  <hr>
+  <form class="form-horizontal align-center" [formGroup]="form" (ngSubmit)="add(apartmentTitle.value, apartmentDescription.value, apartmentCity.value, apartmentPrice.value, apartmentPhotos.value);
+  apartmentTitle.value=''; apartmentDescription.value=''; apartmentCity.value=''; apartmentPrice.value='';" >
+
+    <div class="form-group">
+        <label class="control-label col-sm-4" for="title"><strong>Title*</strong></label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" placeholder="Apartment's Title" id = "title" #apartmentTitle required formControlName="title">
+          <!-- <div *ngIf="form.controls['apartmentTitle'].hasError('required') && apartmentTitle.touched" class="alert alert-danger">
+              <h1>please enter name</h1>
+          </div>
+          <div *ngIf="form.controls['apartmentTitle'].hasError('minlength')" class="alert alert-danger">
+              <h1>please enter at least 5 characters</h1>
+          </div> -->
+        </div>
+    </div>
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="description"><strong>Description*</strong></label>
+      <div class="col-sm-6">
+        <textarea type="text" class="form-control" rows="5"
+          placeholder="Enter a good description to attract more customers" id ="description" #apartmentDescription formControlName="description"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-4" for="city"><strong>location*</strong></label>
+        <div class="col-sm-6">
+          <input type="text" id = "city" class="form-control" placeholder="Athens Ilion" #apartmentCity formControlName="city">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-sm-4" for="price"><strong>Price per Month*</strong></label>
+        <div class="col-sm-6">
+          <input type="text" id="price" class="form-control" placeholder="Apartment's Title" #apartmentPrice formControlName="price">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-4" for="photos" ><strong>Upload Image</strong></label>
+        <div class="col-sm-6">
+          <input type="file" id="photos" class="form-control" placeholder="Apartment's Title" #apartmentPhotos (change)="onFileChange($event)">
+          <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
+        </div>
+    </div>
+
+
+
+    <div class="form-group" >
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid || loading">Upload</button>
+        <!-- (click)="add(apartmentTitle.value, apartmentDescription.value, apartmentCity.value, apartmentPrice.value, apartmentPhotos.value);
+        apartmentTitle.value=''; apartmentDescription.value=''; apartmentCity.value=''; apartmentPrice.value=''"  -->
+      </div>
+    </div>
+
+
+
+  </form>
+
+  <div class="alert alert-warning alert-dismissable text-center" *ngIf="messages.length">
+    <strong>Warning</strong>
+    <button class="btn btn-outline-info"
+            (click)="clear()">clear</button>
+    <ul>
+      <li *ngFor="let message of messages"> {{message}} </li>
+    </ul>
+    <!-- <div class="close" data-dismiss="alert" aria-label="close">&times;</div> -->
+  </div>
+<!-- <pre>{{form.value | json }}</pre> -->
+
+</div>

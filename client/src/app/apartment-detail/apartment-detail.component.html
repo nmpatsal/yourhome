@@ -1,0 +1,45 @@
+
+
+<div class="container" *ngIf="apartment">
+  <div class="properties-listing spacer">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12 ">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="property-images">
+            <!-- Slider Starts -->
+              <div>
+                <img src="{{apartment.photos}}" alt="" title="" class="img-fluid" alt="Responsive image"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spacer">
+          <h2>{{ apartment.title }}</h2>
+          <h4>Property Details</h4>
+
+          <p>{{ apartment.description }} </p>
+        </div>
+      <div class="row equal">
+          <div class="col-lg-6  col-sm-6 mycontent-left">
+            <div class="property-info">
+            <p class="price">Price: {{ apartment.price | currency :'EUR':true }}</p>
+            <p class="area">Location: {{ apartment.city }}</p>
+
+              <div class="profile">
+                <i class="fa fa-user" aria-hidden="true"></i>Owners Details
+                <p>Username: {{ apartment.userUsername }}<br>Publication date: {{ apartment.pub_date | date:"shortDate"}}</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-6 col-sm-6 mycontent-right">
+            <br>
+            <app-bookings></app-bookings>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-reviews></app-reviews>
+</div>

@@ -1,0 +1,34 @@
+
+<div class="row justify-content-start panel panel-danger" *ngIf="auth.isLoggedIn">
+  <div class="enquiry">
+    <br><br><br>
+    <div class="panel-body">
+      <h6>Ask for more info</h6>
+      <form role="form">
+                    <label for="name" class="sr-only">name</label>
+                    <input #name type="text" id="name" class="form-control" placeholder="Full Name"/>
+                    <label for="contact_no" class="sr-only">00302102528178</label>
+                    <input #contact_no id="contact_no" type="text" class="form-control" placeholder="00302102528178"/>
+                    <label for="comment"  class="sr-only">00302102528178</label>
+                    <textarea #comment id="comment" rows="6" class="form-control" placeholder="Whats on your mind?"></textarea>
+          <button (click)="newBooking(name.value, contact_no.value, comment.value);
+          name.value=''; contact_no.value=''; comment.value='';" type="submit" class="btn btn-primary" name="Submit">Send Message</button>
+      </form>
+      <div class="alert alert-warning alert-dismissable text-center" *ngIf="messages.length">
+        <strong>Warning</strong>
+        <button class="btn btn-outline-info"
+                (click)="clear()">clear</button>
+        <ul>
+          <li *ngFor="let message of messages"> {{message}} </li>
+        </ul>
+        <!-- <div class="close" data-dismiss="alert" aria-label="close">&times;</div> -->
+      </div>
+    </div>
+   </div>
+</div>
+<div *ngIf="!auth.isLoggedIn">
+  <div class = "jumbotron">
+    <h1 class="display-3"><a routerLink="/login" href="#">Log in </a></h1>
+    <p class="lead"><a routerLink="/login" href="#">Please Log in to ask for more info</a></p>
+  </div>
+</div>

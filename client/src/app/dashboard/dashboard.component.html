@@ -1,0 +1,29 @@
+
+<section class="listings">
+  <div class="wrapper">
+    <ul class="properties_list">
+      <a *ngFor="let apartment of apartments"
+        routerLink="/detail/{{apartment.id}}">
+        <li>
+          <div class="module apartment">
+              <img src="{{apartment.photos}}" alt="" title="" class="property_img"/>
+
+            <span class="price">{{ apartment.price | currency :'EUR':true}}</span>
+            <div class="property_details">
+              <h1>
+                <!-- <a href="#">{{ apartment.title }}</a> -->
+                {{ apartment.title }}
+              </h1>
+              <h2>{{ (apartment.description.length>6)? (apartment.description | slice:0:6)+'..':(str) }} <span class="property_size">{{ apartment.pub_date | date : "shortDate"}}</span></h2>
+
+            </div>
+          </div>
+
+        </li>
+      </a>
+    </ul>
+    <div class="more_listing">
+      <a   routerLink="/apartments" class="more_listing_btn">View More Listings</a>
+    </div>
+  </div>
+</section>

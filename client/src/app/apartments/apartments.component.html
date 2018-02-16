@@ -1,0 +1,36 @@
+
+<app-apartment-search></app-apartment-search>
+<h2>Apartments</h2>
+<section class="listings">
+  <div class="wrapper">
+    <ul class="properties_list">
+      <a *ngFor="let apartment of apartments"
+        routerLink="/detail/{{apartment.id}}">
+        <li>
+          <div class="module apartment">
+
+              <img src="{{apartment.photos}}" alt="" title="" class="property_img"/>
+
+            <span class="price">{{ apartment.price | currency :'EUR':true}}</span>
+            <div class="property_details">
+              <h1>
+
+                {{ apartment.title }}
+              </h1>
+              <h2 class="row">{{ (apartment.description.length>30)? (apartment.description | slice:0:30)+'..':(str) }}
+                <span class="property_size"> {{ apartment.pub_date | date : "shortDate" }}&nbsp;&nbsp;</span>
+                <div *ngIf="auth.isLoggedIn">
+                  <div *ngIf="auth.user.id == apartment.user">
+                    <button class="delete btn btn-outline-danger" title="delete apartment"
+                            (click)="delete(apartment)">x</button>
+                  </div>
+                </div>
+              </h2>
+            </div>
+          </div>
+
+        </li>
+      </a>
+    </ul>
+  </div>
+</section>

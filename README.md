@@ -14,7 +14,7 @@ The user that is interested in renting an apartment:
 <li>He can see all the uploaded apartments</li>
 <li>He can search the uploaded apartments</li>
 <li>He can review an existing apartment after he log in</li>
-<li>He may ask more information about an apartment and its availability</li>
+<li>He may ask more information about an apartment and its availability.</li>
 </ul>
 
 The apartment owner <b>should only register his apartment</b>.
